@@ -7,7 +7,7 @@ const connectDB = async ()=>{
 
 try {
     await mongoose.connect(process.env.CONNECT_MONGO,{
-      dbName: 'NaveeGoods',
+      dbName: 'Trendora',
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
