@@ -1,4 +1,4 @@
-import sellerDTO from '../schemas/sellerSchema.js';
+import sellerDTO from '../schemas/sellerSchema/sellerInfo.js';
 
 const getSeller = async (req) => {
   try {

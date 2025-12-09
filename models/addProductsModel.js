@@ -37,9 +37,7 @@ const commonModelUploader = async (req, condition_category) => {
         const results = await Promise.allSettled(
             req.products.map(async (product) => {
                 try {
-                    console.log("Common Uploader =================");
-                    console.log(product);
-                    
+
                     const commonDB = await giveDTO(condition_category, product);
                     await commonDB.save();
                     return commonDB.productID;

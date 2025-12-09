@@ -17,12 +17,10 @@ const productCode = {
 };
 
 const miniCategoryMap = {
-
   MensWatchesandAccessories: "Mens WA",
   WomensWatchesandAccessories: "Womens WA",
   BoysWatchesandAccessories: "Boys WA",
   GirlsWatchesandAccessories: "Girls WA",
-
 }
 
 const all_Codes = {productCode, miniCategoryMap};

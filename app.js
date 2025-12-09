@@ -2,6 +2,7 @@ import express from 'express'
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import users from './routes/userRoutes.js'
+import customer from './routes/customerRoutes.js'
 import test from './routes/testRoutes.js'
 import product from './routes/addProductRoutes.js'
 import seller from './routes/sellerRoutes.js'
@@ -22,6 +23,8 @@ app.use(cors({
 }));
 
 
+
+app.use('/api/customer',customer);
 
 app.use('/api/users',users);
 app.use('/api/test',test);

@@ -3,6 +3,7 @@ import fs from "fs/promises";
 import cloudinary from "../utils/cloudinary.js";
 import ID_Generator from "../utils/sequenceIdGenerator.js";
 import all_Codes from "../utils/codes.js";
+import { log } from "console";
 
 const allBulkUploader = async function (req, res, next) {
   
@@ -19,10 +20,15 @@ const allBulkUploader = async function (req, res, next) {
         const withoutSpacedProCategory = proCategory.replace(/\s+/g, "");
         product.productID = await ID_Generator.getNextId( all_Codes.productCode[withoutSpacedProCategory] , proCategory.replace(/\s+/g, ""));
         
+        console.log("These are Product Images", product.Images);
+        
         const matchedImages = req.files.images.filter((file) =>
           product.Images.includes(file.filename)
+
       );
 
+      console.log("These are matched Images", matchedImages);
+      
         const uploadResults = await Promise.all(
           matchedImages.map((file, index) => {
 
@@ -72,12 +78,10 @@ const allBulkUploader = async function (req, res, next) {
       })
     );
     
-    console.log(req.products);
-    console.log("======================================================");
-    
-    console.log(req.products[0].uploadedImages);
     
     req.uploadType = "bulk";
+
+    return
     next();
   }
   catch (error) {

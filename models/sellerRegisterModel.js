@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import sellerDTO from '../schemas/sellerSchema.js';
+import sellerDTO from '../schemas/sellerSchema/sellerInfo.js';
 
 const registerNewSeller = async (req, res) => {
   const data = req.body;

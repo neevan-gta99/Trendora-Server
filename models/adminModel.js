@@ -1,4 +1,4 @@
-import adminDTO from '../schemas/adminSchema.js';
+import adminDTO from '../schemas/adminSchema/adminCreds.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';

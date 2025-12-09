@@ -1,4 +1,4 @@
-import sellerDTO from '../schemas/sellerSchema.js';
+import sellerDTO from '../schemas/sellerSchema/sellerInfo.js';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 
