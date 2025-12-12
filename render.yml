@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: trendora-redis
+    env: docker
+    plan: free
+    dockerfilePath: redis/Dockerfile
+    autoDeploy: true
+    ports:
+      - port: 6379

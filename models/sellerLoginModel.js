@@ -43,12 +43,14 @@ const checkCred = async (req, res) => {  // Note: Added `res` parameter
     });
 
     // ✅ Success response
-    return res.status(200).json({
+    return {
+      code:200,
       message: "Login successful",
       sellerId: foundSeller.sellerId,
       sellerName: foundSeller.fullName,
+      jwt_token: token
       // Note: Token is NOT sent in response body (it's in the cookie)
-    });
+    };
 
   } catch (error) {
     console.error("Login error:", error);

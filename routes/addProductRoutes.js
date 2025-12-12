@@ -28,7 +28,6 @@ router.post('/suitcases', upload.array("images", 10), singleProductImageUploader
 router.post('/luggage', upload.array("images", 10), singleProductImageUploader.singleUploads, addProduct.luggage);
 
 
-
 //For Bulk Product
 router.post('/men-topwear/bulk/csv', parser.busboyParserForCSV, parser.csvParser, product_Validator.sheetDataValidation, bulkProductsImagesUploader.allBulkUploader, addProduct.menTopwear);
 router.post('/men-topwear/bulk/xlsx', parser.busboyParserForXL,bulkProductsImagesUploader.allBulkUploader, addProduct.menTopwear);

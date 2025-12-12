@@ -12,21 +12,21 @@ router.get('/get-showcase-suitcases', getProducts.showCaseSuitcases);
 router.get('/get-showcase-luggages', getProducts.showCaseLuggages);
 
 
-router.get('/get-all-men-topwears', getProducts.allMenTopWear);
-router.get('/get-all-men-bottomwears', getProducts.allMenBottomWear);
-router.get('/get-all-men-footwears', getProducts.allMenFootwear);
-router.get('/get-all-women-ethnic', getProducts.allWomenEthnic);
-router.get('/get-all-women-western', getProducts.allWomenWestern);
-router.get('/get-all-women-footwears', getProducts.allWomenFootwear);
-router.get('/get-all-boys-brands', getProducts.allBoysBrands);
-router.get('/get-all-girls-grands', getProducts.allGirlsGrands);
-router.get('/get-all-mens-wa', getProducts.allMensWA);
-router.get('/get-all-womens-wa', getProducts.allWomensWA);
-router.get('/get-all-boys-wa', getProducts.allBoysWA);
-router.get('/get-all-girls-wa', getProducts.allGirlsWA);
-router.get('/get-all-bags', getProducts.allBags);
-router.get('/get-all-suitcases', getProducts.allSuitcases);
-router.get('/get-all-luggages', getProducts.allLuggages);
+router.post('/get-all-men-topwears', getProducts.allMenTopWear);
+router.post('/get-all-men-bottomwears', getProducts.allMenBottomWear);
+router.post('/get-all-men-footwears', getProducts.allMenFootwear);
+router.post('/get-all-women-ethnic', getProducts.allWomenEthnic);
+router.post('/get-all-women-western', getProducts.allWomenWestern);
+router.post('/get-all-women-footwears', getProducts.allWomenFootwear);
+router.post('/get-all-boys-brands', getProducts.allBoysBrands);
+router.post('/get-all-girls-grands', getProducts.allGirlsGrands);
+router.post('/get-all-mens-wa', getProducts.allMensWA);
+router.post('/get-all-womens-wa', getProducts.allWomensWA);
+router.post('/get-all-boys-wa', getProducts.allBoysWA);
+router.post('/get-all-girls-wa', getProducts.allGirlsWA);
+router.post('/get-all-bags', getProducts.allBags);
+router.post('/get-all-suitcases', getProducts.allSuitcases);
+router.post('/get-all-luggages', getProducts.allLuggages);
 
 
 router.get('/perProduct', getProducts.perProduct);
