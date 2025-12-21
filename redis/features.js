@@ -3,8 +3,6 @@ import { redisClient } from "../server.js";
 import Schema_DTOs from "../DTOs/schemaDetails.js";
 import products_Model_For_Show from "../models/getProductsModel.js";
 
-
-// Ek mapping banate hain jo short code -> descriptive key map kare
 const schemaKeyMap = {
     mtr: "men-topwear-products",
     mbtr: "men-bottomwear-products",
