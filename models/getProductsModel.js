@@ -12,8 +12,7 @@ const getShowCaseMensWear = async () => {
   const cached = await redisClient.get(cacheKey);
 
   if (cached) {
-    console.log("Cache hit");
-    //Auto refresh
+    
     await redisClient.expire(cacheKey, GLOBAL_REDIS_TTL);
     return JSON.parse(cached);
   }
@@ -291,7 +290,7 @@ const getAllGirlsGrands = async (req) => {
 
 const getAllMensWA = async (req) => {
   try {
-    console.log("AYYYYYYYYYYYYYYYYYYYYYYYYY");
+
     const products = await Schema_DTOs["mwa"].find({ status: "Active" }).lean();
     const key = "men-wa-products";
     return Cache_Features.returnFromCache("mwa",key,products,req);

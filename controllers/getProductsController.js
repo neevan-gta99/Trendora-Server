@@ -43,7 +43,7 @@ const showCaseGirlsGrands = async (req, res) => {
 
   try {
 
-    const productInfo = await products_Model_For_Show.getShowCaseGirlsGrands(req);
+    const productInfo = await products_Model_For_Show.getShowCaseGirlsGrands();
 
     res.status(200).json({ message: "Products is Here!", productInfo });
   } catch (err) {
@@ -56,7 +56,7 @@ const showCaseBags = async (req, res) => {
 
   try {
 
-    const productInfo = await products_Model_For_Show.getShowCaseBags(req);
+    const productInfo = await products_Model_For_Show.getShowCaseBags();
 
     res.status(200).json({ message: "Products is Here!", productInfo });
   } catch (err) {
@@ -69,7 +69,7 @@ const showCaseSuitcases = async (req, res) => {
 
   try {
 
-    const productInfo = await products_Model_For_Show.getShowCaseSuitcases(req);
+    const productInfo = await products_Model_For_Show.getShowCaseSuitcases();
 
     res.status(200).json({ message: "Products is Here!", productInfo });
   } catch (err) {
@@ -82,7 +82,7 @@ const showCaseLuggages = async (req, res) => {
 
   try {
 
-    const productInfo = await products_Model_For_Show.getShowCaseLuggages(req);
+    const productInfo = await products_Model_For_Show.getShowCaseLuggages();
 
     res.status(200).json({ message: "Products is Here!", productInfo });
   } catch (err) {

@@ -1,5 +1,28 @@
 import { GLOBAL_REDIS_TTL } from "./config.js";
 import { redisClient } from "../server.js";
+import Schema_DTOs from "../DTOs/schemaDetails.js";
+import products_Model_For_Show from "../models/getProductsModel.js";
+
+
+// Ek mapping banate hain jo short code -> descriptive key map kare
+const schemaKeyMap = {
+    mtr: "men-topwear-products",
+    mbtr: "men-bottomwear-products",
+    mfr: "men-footwear-products",
+    weth: "women-ethnic-products",
+    wwtn: "women-western-products",
+    wftr: "women-footwear-products",
+    bbds: "boys-brands-products",
+    ggds: "girls-grands-products",
+    mwa: "men-wa-products",
+    wwa: "women-wa-products",
+    bwa: "boys-wa-products",
+    gwa : "girls-wa-products",
+    bgs: "bags-products",
+    sts: "suitcases-products",
+    lgs: "lgs-products"
+};
+
 const saveInCache = async (key, data) => {
     await redisClient.setEx(key, GLOBAL_REDIS_TTL, JSON.stringify(data));
 }
@@ -53,6 +76,39 @@ const returnFromCache = async (code, key, data, req) => {
 
     return result;
 }
+
+async function loadAndCacheProducts() {
+    for (const [shortCode, redisKey] of Object.entries(schemaKeyMap)) {
+        
+        const products = await Schema_DTOs[shortCode].find({ status: "Active" }).lean();
+
+        for (const product of products) {
+            await redisClient.lPush(redisKey, JSON.stringify(product));
+        }
+
+        console.log(`Cached ${products.length} products into Redis list: ${redisKey}`);
+    }
+
+    products_Model_For_Show.getShowCaseMensWear();
+    products_Model_For_Show.getShowCaseWomensWear();
+    products_Model_For_Show.getShowCaseBoysBrands();
+    products_Model_For_Show.getShowCaseGirlsGrands();
+    products_Model_For_Show.getShowCaseBags();
+    products_Model_For_Show.getShowCaseSuitcases();
+    products_Model_For_Show.getShowCaseMensWear();
+
+}
+
+(async function () {
+
+    await loadAndCacheProducts();
+
+    setInterval(async () => {
+        await loadAndCacheProducts();
+    }, 1000 * 60 * 30);
+
+})();
+
 
 const Cache_Features = { saveInCache, returnFromCache };
 export default Cache_Features;
