@@ -338,6 +338,7 @@ const getAllGirlsWA = async (req) => {
 };
 
 const getAllBags = async (req) => {
+  
   try {
     const products = await Schema_DTOs["bgs"].find({ status: "Active" }).lean();
     const key = "bags-products";
