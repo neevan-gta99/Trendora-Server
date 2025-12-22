@@ -7,15 +7,13 @@ dotenv.config();
 
 const port = process.env.PORT || 8900;
 
-let redisClient;
-
 (async () => {
-  redisClient = await redisConnection();
+  const redisClient = await redisConnection();
   await connectDB();
-})();
 
-app.listen(port,()=>{
+  app.locals.redisClient = redisClient; // attach to app for global use
+
+  app.listen(port, () => {
     console.log(`Server is Running: localhost:${port}`);
-})
-
-export {redisClient};
+  });
+})();
