@@ -30,7 +30,6 @@ const returnFromCache = async (code, key, data, req) => {
     const offset = Number(req.body.offset);
     const limit = Number(req.body.limit);
     const tabValues = req.body.tabValues;
-    // const stop = offset + limit - 1;
 
     if (offset < 1) {
         await redisClient.del(key);
