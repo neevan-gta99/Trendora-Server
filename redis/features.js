@@ -43,7 +43,7 @@ const returnFromCache = async (code, key, data, req) => {
     const items = await redisClient.lRange(key, 0, -1);
     const parsedItems = items.map(p => JSON.parse(p));
 
-    console.log("Tab==>", parsedItems);
+    // console.log("Tab==>", parsedItems);
 
     let result = [];
 
