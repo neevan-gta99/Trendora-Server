@@ -51,7 +51,7 @@ const generateToken = async (req, res) => {  // Note: Added `res` parameter
         // 🔍 Step 1: Find customer by customerId
         const foundCustomer = await customerDTO.findOne({ phone: data.phone });
 
-        console.log(foundCustomer, "ye hai customer found ok------------");
+        // console.log(foundCustomer, "ye hai customer found ok------------");
 
         // 🪙 Step 3: Generate JWT token
         const token = jwt.sign(

@@ -21,7 +21,17 @@ const saveInCache2 = async (code, allProducts) => {
         tabProducts = filterProducts.filter(p => p.productType === tab);
 
         const redisKey = `${all_Codes.schemaKeyMap[code]}-${tab}`;
-        await redisClient.set(redisKey, JSON.stringify(tabProducts));
+
+        const exists = await redisClient.exists(redisKey);
+
+        if (exists) {
+            await redisClient.del(redisKey);
+        }
+
+        for (const product of tabProducts) { 
+            await redisClient.rPush(redisKey, JSON.stringify(product)); 
+        }
+
     }
 
 }
@@ -38,9 +48,18 @@ const saveInCache3 = async (code, allProducts) => {
 
         tabProducts = filterProducts.filter(p => p.gender === tab);
 
-        // Save to Redis
         const redisKey = `${all_Codes.schemaKeyMap[code]}-${tab}`;
-        await redisClient.set(redisKey, JSON.stringify(tabProducts));
+
+        const exists = await redisClient.exists(redisKey);
+
+        if (exists) {
+            await redisClient.del(redisKey);
+        }
+
+        for (const product of tabProducts) { 
+            await redisClient.rPush(redisKey, JSON.stringify(product)); 
+        }
+
     }
 
 }
@@ -59,9 +78,20 @@ const saveInCache4 = async (code, allProducts) => {
 
         tabProducts = filterProducts.filter(p => p.subCategory === tab);
 
+        
         // Save to Redis
         const redisKey = `${all_Codes.schemaKeyMap[code]}-${tab}`;
-        await redisClient.set(redisKey, JSON.stringify(tabProducts));
+        
+        const exists = await redisClient.exists(redisKey);
+        
+        if (exists) {
+            await redisClient.del(redisKey);
+        }
+
+        for (const product of tabProducts) { 
+            await redisClient.rPush(redisKey, JSON.stringify(product)); 
+        }
+
     }
 
 }
@@ -88,27 +118,24 @@ const loadInCache = async () => {
 };
 
 const returnFromCache = async (code, req) => {
-  const offset = Number(req.body.offset);
-  const limit = Number(req.body.limit);
-  const tabValues = req.body.tabValues;
+    const offset = Number(req.body.offset);
+    const limit = Number(req.body.limit);
+    const tabValues = req.body.tabValues;
 
-  let result = [];
+    let result = [];
 
-  for (const tab of tabValues) {
-    const redisKey = `${all_Codes.schemaKeyMap[code]}-${tab}`;
+    for (const tab of tabValues) {
+        const redisKey = `${all_Codes.schemaKeyMap[code]}-${tab}`;
 
-    // Directly fetch slice from Redis list
-    const tabProducts = await redisClient.lRange(
-      redisKey,
-      offset,
-      offset + limit - 1
-    );
+        const tabProducts = await redisClient.lRange(redisKey, offset, offset + limit - 1);
+        const parsed = tabProducts.map(item => JSON.parse(item));
 
-    result = [...result, ...tabProducts];
-  }
+        result = [...result, ...parsed];
+    }
 
-  return result;
+    return result;
 };
+
 
 
 
