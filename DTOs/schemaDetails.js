@@ -21,7 +21,7 @@ const Schema_DTOs = {
   ggds: girlsGrandsDTO,
   gwa: girlsWADTO,
   lgs: luggageDTO,
-  mbtr: mensBottomwearDTO,
+  mbr: mensBottomwearDTO,
   mfr: mensFootwearDTO,
   mwa: mensWADTO,
   mtr: mensTopwearDTO,

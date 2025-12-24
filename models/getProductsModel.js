@@ -7,7 +7,7 @@ import { GLOBAL_REDIS_TTL } from "../redis/config.js";
 
 const getShowCaseMensWear = async () => {
 
-  const redisId = "mtr-mbtr-mfr";
+  const redisId = "mtr-mbr-mfr";
   const cacheKey = `showcase-menswear:${redisId}`;
   const cached = await redisClient.get(cacheKey);
 
@@ -17,7 +17,7 @@ const getShowCaseMensWear = async () => {
 
   try {
     const showcaseProducts = await Schema_DTOs["mtr"].find({ hot: true });
-    const showcaseProducts2 = await Schema_DTOs["mbtr"].find({ hot: true });
+    const showcaseProducts2 = await Schema_DTOs["mbr"].find({ hot: true });
     const showcaseProducts3 = await Schema_DTOs["mfr"].find({ hot: true });
 
     const totalShowcase = [
@@ -177,10 +177,7 @@ const getAllMenTopwear = async (req) => {
 
   try {
 
-    const products = await Schema_DTOs["mtr"].find({ status: "Active" }).lean();
-    const key = "men-topwear-products";
-    
-    return Cache_Features.returnFromCache("mtr",key,products,req);
+    return Cache_Features.returnFromCache("mtr", req);
 
   } catch (error) {
     console.error("Error fetching men's topwear:", error);
@@ -190,10 +187,8 @@ const getAllMenTopwear = async (req) => {
 
 const getAllMenBottomwear = async (req) => {
   try {
-    const products = await Schema_DTOs["mbtr"].find({ status: "Active" }).lean();
-    const key = "men-bottomwear-products";
-    
-    return Cache_Features.returnFromCache("mbtr",key,products,req);
+
+    return Cache_Features.returnFromCache("mbr", req);
   } catch (error) {
     console.error("Error fetching men's bottomwear:", error);
     throw new Error("Failed to fetch men's bottomwear");
@@ -202,10 +197,8 @@ const getAllMenBottomwear = async (req) => {
 
 const getAllMenFootwear = async (req) => {
   try {
-    const products = await Schema_DTOs["mfr"].find({ status: "Active" }).lean();
-    const key = "men-footwear-products";
-    
-    return Cache_Features.returnFromCache("mfr",key,products,req);
+
+    return Cache_Features.returnFromCache("mfr", req);
   } catch (error) {
     console.error("Error fetching men's bottomwear:", error);
     throw new Error("Failed to fetch men's bottomwear");
@@ -214,10 +207,8 @@ const getAllMenFootwear = async (req) => {
 
 const getAllWomenEthnic = async (req) => {
   try {
-    const products = await Schema_DTOs["weth"].find({ status: "Active" }).lean();
-    const key = "women-ethnic-products";
-    
-    return Cache_Features.returnFromCache("weth",key,products,req);
+
+    return Cache_Features.returnFromCache("weth", req);
   } catch (error) {
     console.error("Error fetching men's bottomwear:", error);
     throw new Error("Failed to fetch men's bottomwear");
@@ -226,10 +217,8 @@ const getAllWomenEthnic = async (req) => {
 
 const getAllWomenWestern = async (req) => {
   try {
-    const products = await Schema_DTOs["wwtn"].find({ status: "Active" }).lean();
-    const key = "women-western-products";
-    
-    return Cache_Features.returnFromCache("wwtn",key,products,req);
+
+    return Cache_Features.returnFromCache("wwtn", req);
   } catch (error) {
     console.error("Error fetching men's bottomwear:", error);
     throw new Error("Failed to fetch men's bottomwear");
@@ -238,10 +227,7 @@ const getAllWomenWestern = async (req) => {
 
 const getAllWomenFootwear = async (req) => {
   try {
-    const products = await Schema_DTOs["wftr"].find({ status: "Active" }).lean();
-    const key = "women-footwear-products";
-    
-    return Cache_Features.returnFromCache("wftr",key,products,req);
+    return Cache_Features.returnFromCache("wftr", req);
   } catch (error) {
     console.error("Error fetching men's bottomwear:", error);
     throw new Error("Failed to fetch men's bottomwear");
@@ -250,11 +236,7 @@ const getAllWomenFootwear = async (req) => {
 
 const getAllBoysBrands = async (req) => {
   try {
-    const products = await Schema_DTOs["bbds"].find({ status: "Active" }).lean();
-    const key = "boys-brands-products";
-    console.log("Products==>>>>>",products);
-    
-    return Cache_Features.returnFromCache("bbds",key,products,req);
+    return Cache_Features.returnFromCache("bbds", req);
 
   } catch (error) {
     console.error("Error fetching men's bottomwear:", error);
@@ -264,9 +246,7 @@ const getAllBoysBrands = async (req) => {
 
 const getAllGirlsGrands = async (req) => {
   try {
-    const products = await Schema_DTOs["ggds"].find({ status: "Active" }).lean();
-    const key = "girls-grands-products";
-    return Cache_Features.returnFromCache("ggds",key,products,req);
+    return Cache_Features.returnFromCache("ggds", req);
 
   } catch (error) {
     console.error("Error fetching men's bottomwear:", error);
@@ -276,10 +256,7 @@ const getAllGirlsGrands = async (req) => {
 
 const getAllMensWA = async (req) => {
   try {
-
-    const products = await Schema_DTOs["mwa"].find({ status: "Active" }).lean();
-    const key = "men-wa-products";
-    return Cache_Features.returnFromCache("mwa",key,products,req);
+    return Cache_Features.returnFromCache("mwa", req);
 
   } catch (error) {
     console.error("Error fetching men's bottomwear:", error);
@@ -289,9 +266,7 @@ const getAllMensWA = async (req) => {
 
 const getAllWomensWA = async (req) => {
   try {
-    const products = await Schema_DTOs["wwa"].find({ status: "Active" }).lean();
-    const key = "women-wa-products";
-    return Cache_Features.returnFromCache("wwa",key,products,req);
+    return Cache_Features.returnFromCache("wwa", req);
 
   } catch (error) {
     console.error("Error fetching men's bottomwear:", error);
@@ -301,9 +276,7 @@ const getAllWomensWA = async (req) => {
 
 const getAllBoysWA = async (req) => {
   try {
-    const products = await Schema_DTOs["bwa"].find({ status: "Active" }).lean();
-    const key = "boys-wa-products";
-    return Cache_Features.returnFromCache("bwa",key,products,req);
+    return Cache_Features.returnFromCache("bwa", req);
 
   } catch (error) {
     console.error("Error fetching men's bottomwear:", error);
@@ -313,9 +286,8 @@ const getAllBoysWA = async (req) => {
 
 const getAllGirlsWA = async (req) => {
   try {
-    const products = await Schema_DTOs["gwa"].find({ status: "Active" }).lean();
-    const key = "girls-wa-products";
-    return Cache_Features.returnFromCache("gwa",key,products,req);
+
+    return Cache_Features.returnFromCache("gwa", req);
 
   } catch (error) {
     console.error("Error fetching men's bottomwear:", error);
@@ -324,11 +296,10 @@ const getAllGirlsWA = async (req) => {
 };
 
 const getAllBags = async (req) => {
-  
+
   try {
-    const products = await Schema_DTOs["bgs"].find({ status: "Active" }).lean();
-    const key = "bags-products";
-    return Cache_Features.returnFromCache("bgs",key,products,req);
+
+    return Cache_Features.returnFromCache("bgs", req);
 
   } catch (error) {
     console.error("Error fetching men's bottomwear:", error);
@@ -338,9 +309,7 @@ const getAllBags = async (req) => {
 
 const getAllSuitcases = async (req) => {
   try {
-    const products = await Schema_DTOs["sts"].find({ status: "Active" }).lean();
-    const key = "suitcases-products";
-    return Cache_Features.returnFromCache("sts",key,products,req);
+    return Cache_Features.returnFromCache("sts", req);
 
   } catch (error) {
     console.error("Error fetching men's bottomwear:", error);
@@ -350,9 +319,8 @@ const getAllSuitcases = async (req) => {
 
 const getAllLuggages = async (req) => {
   try {
-    const products = await Schema_DTOs["lgs"].find({ status: "Active" }).lean();
-    const key = "lgs-products";
-    return Cache_Features.returnFromCache("lgs",key,products,req);
+
+    return Cache_Features.returnFromCache("lgs", req);
 
   } catch (error) {
     console.error("Error fetching men's bottomwear:", error);
