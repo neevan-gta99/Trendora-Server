@@ -95,7 +95,8 @@ const returnFromCache = async (code, req) => {
     let result = [];
 
     for (const tab of tabValues) {
-        let redisKey = `${code}-${tab}`;
+        
+        const redisKey = `${all_Codes.schemaKeyMap[code]}-${tab}`;
 
         const data = await redisClient.get(redisKey);
         if (!data) continue;
