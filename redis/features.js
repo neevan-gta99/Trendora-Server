@@ -15,15 +15,15 @@ const schemaKeyMap = {
     mwa: "men-wa-products",
     wwa: "women-wa-products",
     bwa: "boys-wa-products",
-    gwa : "girls-wa-products",
+    gwa: "girls-wa-products",
     bgs: "bags-products",
     sts: "suitcases-products",
     lgs: "lgs-products"
 };
 
 const saveInCache = async (key, data) => {
-    await redisClient.setEx(key, GLOBAL_REDIS_TTL, JSON.stringify(data));
-}
+    await redisClient.set(key, JSON.stringify(data));
+};
 
 const returnFromCache = async (code, key, data, req) => {
 
@@ -76,11 +76,11 @@ const returnFromCache = async (code, key, data, req) => {
 
 async function loadAndCacheProducts() {
     for (const [shortCode, redisKey] of Object.entries(schemaKeyMap)) {
-        
+
         const products = await Schema_DTOs[shortCode].find({ status: "Active" }).lean();
 
         for (const product of products) {
-            await redisClient.lPush(redisKey, JSON.stringify(product));
+            await redisClient.set(redisKey, JSON.stringify(products));
         }
 
         console.log(`Cached ${products.length} products into Redis list: ${redisKey}`);

@@ -12,8 +12,6 @@ const getShowCaseMensWear = async () => {
   const cached = await redisClient.get(cacheKey);
 
   if (cached) {
-    
-    await redisClient.expire(cacheKey, GLOBAL_REDIS_TTL);
     return JSON.parse(cached);
   }
 
@@ -44,8 +42,6 @@ const getShowCaseWomensWear = async () => {
   const cached = await redisClient.get(cacheKey);
 
   if (cached) {
-    console.log("Cache hit");
-    await redisClient.expire(cacheKey, GLOBAL_REDIS_TTL);
     return JSON.parse(cached);
   }
 
@@ -76,8 +72,6 @@ const getShowCaseBoysBrands = async () => {
   const cached = await redisClient.get(cacheKey);
 
   if (cached) {
-    console.log("Cache hit");
-    await redisClient.expire(cacheKey, GLOBAL_REDIS_TTL);
     return JSON.parse(cached);
   }
 
@@ -101,8 +95,6 @@ const getShowCaseGirlsGrands = async () => {
   const cached = await redisClient.get(cacheKey);
 
   if (cached) {
-    console.log("Cache hit");
-    await redisClient.expire(cacheKey, GLOBAL_REDIS_TTL);
     return JSON.parse(cached);
   }
 
@@ -125,8 +117,6 @@ const getShowCaseBags = async () => {
   const cached = await redisClient.get(cacheKey);
 
   if (cached) {
-    console.log("Cache hit");
-    await redisClient.expire(cacheKey, GLOBAL_REDIS_TTL);
     return JSON.parse(cached);
   }
 
@@ -148,8 +138,6 @@ const getShowCaseSuitcases = async () => {
   const cached = await redisClient.get(cacheKey);
 
   if (cached) {
-    console.log("Cache hit");
-    await redisClient.expire(cacheKey, GLOBAL_REDIS_TTL);
     return JSON.parse(cached);
   }
 
@@ -171,8 +159,6 @@ const getShowCaseLuggages = async () => {
   const cached = await redisClient.get(cacheKey);
 
   if (cached) {
-    console.log("Cache hit");
-    await redisClient.expire(cacheKey, GLOBAL_REDIS_TTL);
     return JSON.parse(cached);
   }
 
