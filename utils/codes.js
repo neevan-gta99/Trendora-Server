@@ -35,7 +35,7 @@ const categoryCode = {
 };
 
 const subCategoryCodes = {
-  mtr: [" T-Shirt", "Shirt", "Hoodie", "Jacket", "Sweatshirt", "Kurta"],
+  mtr: ["T-Shirt", "Shirt", "Hoodie", "Jacket", "Sweatshirt", "Kurta"],
   mbr: ["Jeans", "Joggers"],
   mfr: ["Shoes", "Slippers"],
   weth: ["Saree", "Kurta"],

@@ -88,27 +88,28 @@ const loadInCache = async () => {
 };
 
 const returnFromCache = async (code, req) => {
-    const offset = Number(req.body.offset);
-    const limit = Number(req.body.limit);
-    const tabValues = req.body.tabValues;
+  const offset = Number(req.body.offset);
+  const limit = Number(req.body.limit);
+  const tabValues = req.body.tabValues;
 
-    let result = [];
+  let result = [];
 
-    for (const tab of tabValues) {
-        
-        const redisKey = `${all_Codes.schemaKeyMap[code]}-${tab}`;
+  for (const tab of tabValues) {
+    const redisKey = `${all_Codes.schemaKeyMap[code]}-${tab}`;
 
-        const data = await redisClient.get(redisKey);
-        if (!data) continue;
+    // Directly fetch slice from Redis list
+    const tabProducts = await redisClient.lRange(
+      redisKey,
+      offset,
+      offset + limit - 1
+    );
 
-        const parsed = JSON.parse(data);
-        const tabProducts = parsed.slice(offset, offset + limit);
+    result = [...result, ...tabProducts];
+  }
 
-        result = [...result, ...tabProducts];
-    }
-
-    return result;
+  return result;
 };
+
 
 
 
