@@ -1,4 +1,20 @@
 import products_Model_For_Show from "../models/getProductsModel.js";
+import { getFormattedDateTime } from "../utils/formatSamples.js";
+
+
+const homepage = async (req, res) => {
+
+  try {
+    
+    const productInfo = await products_Model_For_Show.getCompleteHomepageData(req);
+
+    res.status(200).json({ message: "Products is Here!", productInfo });
+  } catch (err) {
+    res.status(500).json({ message: "Error to fetch product", details: err.message });
+  }
+
+}
+
 
 const showCaseMensWear = async (req, res) => {
 
@@ -291,7 +307,7 @@ export const showcaseLazyLoad = async (req, res) => {
 };
 
 
-const getProducts = { showCaseMensWear, showCaseWomensWear, showCaseBoysBrands, showCaseGirlsGrands, showCaseBags, showCaseSuitcases, showCaseLuggages,showcaseLazyLoad, allMenTopWear, allMenBottomWear, allMenFootwear, allWomenEthnic, allWomenWestern, allWomenFootwear, allBoysBrands, allGirlsGrands, allMensWA, allWomensWA, allBoysWA, allGirlsWA, allBags, allSuitcases, allLuggages, perProduct};
+const getProducts = { showCaseMensWear, showCaseWomensWear, showCaseBoysBrands, showCaseGirlsGrands, showCaseBags, showCaseSuitcases, showCaseLuggages,showcaseLazyLoad, allMenTopWear, allMenBottomWear, allMenFootwear, allWomenEthnic, allWomenWestern, allWomenFootwear, allBoysBrands, allGirlsGrands, allMensWA, allWomensWA, allBoysWA, allGirlsWA, allBags, allSuitcases, allLuggages, perProduct, homepage};
 
 export default getProducts;
 

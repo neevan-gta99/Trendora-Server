@@ -3,6 +3,9 @@ import getProducts from '../controllers/getProductsController.js';
 const router = express.Router();
 
 
+router.get('/homepage', getProducts.homepage);
+
+
 router.get('/get-showcase-men-wears', getProducts.showCaseMensWear);
 router.get('/get-showcase-women-wears', getProducts.showCaseWomensWear);
 router.get('/get-showcase-boys-brands', getProducts.showCaseBoysBrands);
